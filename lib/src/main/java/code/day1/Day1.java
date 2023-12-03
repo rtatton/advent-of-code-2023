@@ -1,8 +1,7 @@
-package code;
+package code.day1;
 
-import java.io.IOException;
-import java.io.UncheckedIOException;
-import java.nio.file.Files;
+import code.util.Input;
+import code.util.Patterns;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,32 +9,35 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 // https://adventofcode.com/2023/day/1
-public record Day1(Pattern pattern, int groupIndex) {
+record Day1(Pattern pattern, int groupIndex) {
 
   private static final Map<String, String> WORD_TO_DIGIT = wordToDigit();
 
   public static Day1 digits() {
-    return new Day1(Pattern.compile("\\d"), 0);
+    return new Day1(Patterns.caseInsensitive("\\d"), 0);
   }
 
   public static Day1 digitsAndWords() {
     var regex = "(?=(" + String.join("|", WORD_TO_DIGIT.keySet()) + "|\\d))";
-    var pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-    return new Day1(pattern, 1);
+    return new Day1(Patterns.caseInsensitive(regex), 1);
   }
 
   public static void main(String[] args) {
     var input = Path.of("lib/src/main/resources/day-1.txt");
+    part1(input);
+    part2(input);
+  }
+
+  private static void part1(Path input) {
     System.out.println("Digits: " + Day1.digits().compute(input));
+  }
+
+  private static void part2(Path input) {
     System.out.println("Digits and words: " + Day1.digitsAndWords().compute(input));
   }
 
   public long compute(Path input) {
-    try (var reader = Files.newBufferedReader(input)) {
-      return reader.lines().mapToLong(this::valueOf).sum();
-    } catch (IOException e) {
-      throw new UncheckedIOException(e);
-    }
+    return Input.compute(input, i -> i.mapToLong(this::valueOf).sum());
   }
 
   private int valueOf(String line) {
