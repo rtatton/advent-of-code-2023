@@ -1,0 +1,41 @@
+plugins {
+    id "java-library"
+    id "com.diffplug.spotless" version "6.22.0"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+spotless {
+    java {
+        target "src/*/java/**/*.java"
+        importOrder().semanticSort()
+        removeUnusedImports()
+        cleanthat()
+        googleJavaFormat().reflowLongStrings()
+        formatAnnotations()
+    }
+}
+
+dependencies {
+    annotationProcessor "io.soabase.record-builder:record-builder-processor:37"
+
+    implementation "com.google.guava:guava:32.1.2-jre"
+    implementation "io.soabase.record-builder:record-builder-processor:37"
+    implementation "io.soabase.record-builder:record-builder-core:37"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.10.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.10.0"
+}
+
+test {
+    useJUnitPlatform()
+}
