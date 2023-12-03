@@ -22,8 +22,8 @@ record Game(long id, List<Multiset<Color>> draws) {
   }
 
   public Multiset<Color> maxPossibleDraw() {
-    var min = draws.stream().map(Multiset::entrySet).flatMap(Set::stream).collect(toMaxCounts());
-    return Draws.newBuilder().addAll(min).build();
+    var max = draws.stream().map(Multiset::entrySet).flatMap(Set::stream).collect(toMaxCounts());
+    return Draws.newBuilder().addAll(max).build();
   }
 
   @Override
