@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+// https://adventofcode.com/2023/day/1
 public record Day1(Pattern pattern, int groupIndex) {
 
   private static final Map<String, String> WORD_TO_DIGIT = wordToDigit();
