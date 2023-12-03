@@ -41,7 +41,6 @@ record GameParser() {
   }
 
   private static Pattern gameIdPattern() {
-    //    return Patterns.caseInsensitivePattern("game\\s*(\\d+)");
     return Patterns.caseInsensitive("game\\s*(\\d+)");
   }
 
