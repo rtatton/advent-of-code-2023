@@ -15,5 +15,4 @@ final class Draws {
         .mapToLong(Multiset.Entry::getCount)
         .reduce(1, Math::multiplyExact);
   }
-
 }
