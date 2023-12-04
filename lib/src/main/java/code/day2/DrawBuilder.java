@@ -1,8 +1,8 @@
 package code.day2;
 
 import com.google.common.collect.EnumMultiset;
-import com.google.common.collect.ImmutableMultiset;
 import com.google.common.collect.Multiset;
+import com.google.common.collect.Multisets;
 import java.util.Map;
 
 final class DrawBuilder {
@@ -24,6 +24,6 @@ final class DrawBuilder {
   }
 
   public Multiset<Color> build() {
-    return ImmutableMultiset.copyOf(draw);
+    return Multisets.unmodifiableMultiset(draw);
   }
 }
