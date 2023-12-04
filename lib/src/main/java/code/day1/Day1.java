@@ -1,7 +1,6 @@
 package code.day1;
 
 import code.util.Input;
-import code.util.Patterns;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +13,12 @@ record Day1(Pattern pattern, int groupIndex) {
   private static final Map<String, String> WORD_TO_DIGIT = wordToDigit();
 
   public static Day1 digits() {
-    return new Day1(Patterns.caseInsensitive("\\d"), 0);
+    return new Day1(Pattern.compile("\\d"), 0);
   }
 
   public static Day1 digitsAndWords() {
     var regex = "(?=(" + String.join("|", WORD_TO_DIGIT.keySet()) + "|\\d))";
-    return new Day1(Patterns.caseInsensitive(regex), 1);
+    return new Day1(Pattern.compile(regex, Pattern.CASE_INSENSITIVE), 1);
   }
 
   public static void main(String[] args) {

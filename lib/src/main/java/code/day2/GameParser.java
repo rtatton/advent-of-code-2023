@@ -1,6 +1,5 @@
 package code.day2;
 
-import code.util.Patterns;
 import com.google.common.collect.Multiset;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -41,11 +40,11 @@ record GameParser() {
   }
 
   private static Pattern gameIdPattern() {
-    return Patterns.caseInsensitive("game\\s*(\\d+)");
+    return Pattern.compile("game\\s*(\\d+)", Pattern.CASE_INSENSITIVE);
   }
 
   private static Pattern colorCountPattern() {
     var colors = Color.stream().map(Color::toString).collect(Collectors.joining("|"));
-    return Patterns.caseInsensitive("(\\d+)\\s*(" + colors + ")");
+    return Pattern.compile("(\\d+)\\s*(" + colors + ")", Pattern.CASE_INSENSITIVE);
   }
 }
