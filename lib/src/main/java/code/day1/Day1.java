@@ -23,15 +23,15 @@ record Day1(Pattern pattern, int groupIndex) {
 
   public static void main(String[] args) {
     var input = Path.of("lib/src/main/resources/day-1.txt");
-    part1(input);
-    part2(input);
+    digits(input);
+    digitsAndWords(input);
   }
 
-  private static void part1(Path input) {
+  private static void digits(Path input) {
     System.out.println("Digits: " + Day1.digits().compute(input));
   }
 
-  private static void part2(Path input) {
+  private static void digitsAndWords(Path input) {
     System.out.println("Digits and words: " + Day1.digitsAndWords().compute(input));
   }
 
